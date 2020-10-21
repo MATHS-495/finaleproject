@@ -6,6 +6,7 @@ output: html_document
 ---
 ```{r}
 print("Saron is a fool. Santosh is cool. Hafa hates school.")
+library(tidyverse)
 ```
 
 

@@ -7,6 +7,80 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggplot2)
+library(GGally)
+```
+
+#Import Data 
+```{r}
+Insurance_Claims <- read_csv("insurance_claims.csv")
+```
+
+```{r}
+#Looking at the dataset 
+View(Insurance_Claims)
+```
+
+We have 1,0000 Cases(Rows) and 39 Columns
+Categorical Columns -
+Quantitative Columns  - 
+
+Use spec() look at the column types for the 39 Columns 
+```{r}
+spec(Insurance_Claims)
+```
+
+Making sure the variables are of the appropriate type
+```{r}
+Insurance_Claims <- read_csv("insurance_claims.csv", 
+                             col_types = cols(
+                               months_as_customer = col_double(),
+                               age = col_double(),
+                               policy_number = col_double(),
+                               policy_bind_date = col_factor(),
+                               policy_state = col_factor(),
+                               policy_csl = col_factor(),
+                               policy_deductable = col_double(),
+                               policy_annual_premium = col_double(),
+                               umbrella_limit = col_double(),
+                               insured_zip = col_double(),
+                               insured_sex = col_factor(),
+                               insured_education_level = col_factor(),
+                               insured_occupation = col_factor(),
+                               insured_hobbies = col_factor(),
+                               insured_relationship = col_factor(),
+                               `capital-gains` = col_double(),
+                               `capital-loss` = col_double(),
+                               incident_date = col_factor(),
+                               incident_type = col_factor(),
+                               collision_type = col_factor(),
+                               incident_severity = col_factor(),
+                               authorities_contacted = col_factor(),
+                               incident_state = col_factor(),
+                               incident_city = col_factor(),
+                               incident_location = col_factor(),
+                               incident_hour_of_the_day = col_double(),
+                               number_of_vehicles_involved = col_double(),
+                               property_damage = col_factor(),
+                               bodily_injuries = col_double(),
+                               witnesses = col_double(),
+                               police_report_available = col_factor(),
+                               total_claim_amount = col_double(),
+                               injury_claim = col_double(),
+                               property_claim = col_double(),
+                               vehicle_claim = col_double(),
+                               auto_make = col_factor(),
+                               auto_model = col_factor(),
+                               auto_year = col_double(),
+                               fraud_reported = col_factor()
+                             ))
+```
+
+
+Exploratory Data Analysis
+```{r}
+ggpairs(Insurance_Claims, mapping = NULL)
 ```
 
 

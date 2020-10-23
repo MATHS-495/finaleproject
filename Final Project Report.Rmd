@@ -1,0 +1,33 @@
+---
+title: "Comparison of Statistical and Machine Learning Models to Predict Insurance Claims for Auto Industry"
+author: "Santosh Jnawali, Saron Lemma, and Rafael Pereira"
+date: "10/21/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

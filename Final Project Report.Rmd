@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(ggplot2)
 library(GGally)
+library(greybox)
 ```
 
 #Import Data 
@@ -77,15 +78,260 @@ Insurance_Claims <- read_csv("insurance_claims.csv",
                              ))
 ```
 
+# Visualizing missing values 
 
-Exploratory Data Analysis
 ```{r}
-ggpairs(Insurance_Claims, mapping = NULL)
+vis_miss(Insurance_Claims)
+```
+Based on the visualization it seems, there are no any missing variables.However, the missing values could be in different forms and character.
+
+# Summary of the dataset 
+
+```{r}
+summary(Insurance_Claims)
 ```
 
 
+Based on the feature of variables we are removing some of the variables that are very least important to us such as policy_bind_date.
 
 
+# Looking at the relationship between Response variable and explanatory variables 
+
+[1] "months_as_customer" 
+ 
+```{r}
+ggplot(Insurance_Claims)+
+  geom_point(aes(x=months_as_customer,y=total_claim_amount))
+```
+ 
+ 
+ 
+ 
+[2] "age"  
+ 
+```{r}
+ggplot(Insurance_Claims)+
+  geom_point(aes(x=age,y=total_claim_amount))
+```
+ 
+ 
+ 
+ 
+ 
+[3] "policy_number"   
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+[4] "policy_bind_date"  
+ 
+ 
+ 
+ 
+[5] "policy_state"  
+ 
+```{r}
+#frequency plot
+ggplot(Insurance_Claims)+     
+  geom_bar(aes(x=policy_state))
+```
+ 
+ 
+ 
+[6] "policy_csl" 
+```{r}
+ggplot(data=Insurance_Claims,aes(x=policy_csl,y=total_claim_amount))+
+  geom_col(size=1,color="darkblue",width =.4)
+``` 
+ 
+ 
+
+[7] "policy_deductable" 
+```{r}
+ggplot(data=Insurance_Claims,aes(x=policy_deductable,y=total_claim_amount))+
+  geom_col(size=1,color="darkblue",width =.4)
+```
+ 
+ [8] "policy_annual_premium"  
+```{r}
+ggplot(Insurance_Claims)+
+  geom_point(aes(x=policy_annual_premium,y=total_claim_amount))
+```
+
+ [9] "umbrella_limit"    
+ 
+```{r}
+ggplot(data=Insurance_Claims,aes(x=umbrella_limit,y=total_claim_amount))+
+  geom_col(size=1,color="darkblue",width =.4)
+``` 
+
+[10] "insured_zip"  
+
+
+
+[11] "insured_sex"     
+```{r}
+ggplot(data=Insurance_Claims,aes(x=insured_sex,y=total_claim_amount))+
+  geom_col(size=1,color="darkblue",width =.4)
+```
+[12] "insured_education_level"    
+```{r}
+ggplot(Insurance_Claims)+
+  geom_point(aes(x=insured_education_level,y=total_claim_amount))
+```
+[13] "insured_occupation"       
+```{r}
+ggplot(Insurance_Claims)+
+  geom_point(aes(x=insured_occupation,y=total_claim_amount))
+```
+[14] "insured_hobbies"     
+```{r}
+ggplot(Insurance_Claims)+
+  geom_point(aes(x=insured_hobbies,y=total_claim_amount))
+```
+[15] "insured_relationship"    
+```{r}
+ggplot(Insurance_Claims)+
+  geom_point(aes(x=insured_relationship,y=total_claim_amount))
+```
+[16] "capital-gains"     
+```{r}
+ggplot(Insurance_Claims)+
+  geom_point(aes(x=`capital-gains`,y=total_claim_amount))
+```
+[17] "capital-loss"      
+```{r}
+ggplot(Insurance_Claims)+
+  geom_point(aes(x=`capital-loss`,y=total_claim_amount))
+```
+[18] "incident_date"     
+```{r}
+ggplot(Insurance_Claims)+
+  geom_point(aes(x=incident_date,y=total_claim_amount))
+```
+[19] "incident_type"     
+```{r}
+ggplot(Insurance_Claims)+
+  geom_point(aes(x=incident_type,y=total_claim_amount))
+```
+[20] "collision_type"     
+```{r}
+ggplot(Insurance_Claims)+
+  geom_point(aes(x=collision_type,y=total_claim_amount))
+```
+[21] "incident_severity"       
+```{r}
+ggplot(Insurance_Claims)+
+  geom_point(aes(x=incident_severity,y=total_claim_amount))
+```
+[22] "authorities_contacted"   
+```{r}
+ggplot(Insurance_Claims)+
+  geom_point(aes(x=authorities_contacted,y=total_claim_amount))
+```
+[23] "incident_state"         
+```{r}
+ggplot(Insurance_Claims)+
+  geom_point(aes(x=incident_state,y=total_claim_amount))
+```
+[24] "incident_city"           
+```{r}
+ggplot(Insurance_Claims)+
+  geom_point(aes(x=incident_city,y=total_claim_amount))
+```
+[25] "incident_location"          
+```{r}
+ggplot(Insurance_Claims)+
+  geom_point(aes(x=incident_location,y=total_claim_amount))
+```
+[26] "incident_hour_of_the_day"   
+```{r}
+ggplot(Insurance_Claims)+
+  geom_point(aes(x=incident_hour_of_the_day,y=total_claim_amount))
+```
+[27] "number_of_vehicles_involved"
+```{r}
+ggplot(Insurance_Claims)+
+  geom_point(aes(x=number_of_vehicles_involved,y=total_claim_amount))
+```
+[28] "property_damage"   
+```{r}
+ggplot(Insurance_Claims)+
+  geom_point(aes(x=property_damage,y=total_claim_amount))
+```
+[29] "bodily_injuries"       
+```{r}
+ggplot(Insurance_Claims)+
+  geom_point(aes(x=bodily_injuries,y=total_claim_amount))
+```
+[30] "witnesses"              
+```{r}
+ggplot(Insurance_Claims)+
+  geom_point(aes(x=witnesses,y=total_claim_amount))
+```
+[31] "police_report_available"    
+```{r}
+ggplot(Insurance_Claims)+
+  geom_point(aes(x=police_report_available,y=total_claim_amount))
+```
+[32] "total_claim_amount"      
+
+
+Response variable 
+
+[33] "injury_claim"           
+```{r}
+ggplot(Insurance_Claims)+
+  geom_point(aes(x=injury_claim,y=total_claim_amount))
+```
+[34] "property_claim"      
+```{r}
+ggplot(Insurance_Claims)+
+  geom_point(aes(x=property_claim,y=total_claim_amount))
+```
+[35] "vehicle_claim"   
+```{r}
+ggplot(Insurance_Claims)+
+  geom_point(aes(x=vehicle_claim,y=total_claim_amount))
+```
+[36] "auto_make"      
+```{r}
+ggplot(Insurance_Claims)+
+  geom_point(aes(x=auto_make,y=total_claim_amount))
+```
+[37] "auto_model"      
+```{r}
+ggplot(Insurance_Claims)+
+  geom_point(aes(x=auto_model,y=total_claim_amount))
+```
+[38] "auto_year"       
+```{r}
+ggplot(Insurance_Claims)+
+  geom_point(aes(x=auto_year,y=total_claim_amount))
+```
+[39] "fraud_reported" 
+```{r}
+ggplot(Insurance_Claims)+
+  geom_point(aes(x=fraud_reported,y=total_claim_amount))
+```
+
+Our dataset has "?" values in the place of missing values, We have to first get rid of those unknown values before we start to create our first models.
+
+# Correlation/Association: 
+
+```{r}
+cor_aso_values<- assoc(Insurance_Claims)
+value<-as.data.frame(round(cor_aso_values$value,2))
+```
+
+```{r,fig.width=20,fig.height=14}
+ggcorrplot(value, method = "circle")
+```
 
 
 

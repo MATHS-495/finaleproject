@@ -11,6 +11,7 @@ library(tidyverse)
 library(ggplot2)
 library(GGally)
 library(greybox)
+library(ggcorrplot)
 ```
 
 #Import Data 
@@ -82,7 +83,7 @@ Insurance_Claims <- read_csv("insurance_claims.csv",
 # Visualizing missing values 
 
 ```{r}
-vis_miss(Insurance_Claims)
+Insurance_Claims
 ```
 Based on the visualization it seems, there are no any missing variables.However, the missing values could be in different forms and character.
 
@@ -104,7 +105,11 @@ ggplot(Insurance_Claims)+
   geom_point(aes(x=months_as_customer,y=total_claim_amount))
 ```
  
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> ebee208ed5dfec8d2470c29b4f79c60afeb97065
 [2] "age"  
  
 ```{r}
@@ -321,15 +326,33 @@ Our dataset has "?" values in the place of missing values, We have to first get 
 # Correlation/Association: 
 
 ```{r}
-cor_aso_values<- assoc(Insurance_Claims)
-value<-as.data.frame(round(cor_aso_values$value,2))
+cor_aso_values <- assoc(Insurance_Claims)
+value <- as.data.frame(round(cor_aso_values$value,2))
 ```
 
 ```{r,fig.width=20,fig.height=14}
-ggcorrplot(value, method = "circle")
+ggcorrplot(value, method = "square")
 ```
 
+## Variables Not Needed for our EDA
 
+The following variables will be dropped and deleted from the data set to make our EDA more straightforward:
+
+policy_number, policy_bind_date, policy_csl - there are other variables, incident_date, 
+
+When we move forward and do the models we need to facotur out those variables.
+```{r}
+Insurance_Claims <- subset(Insurance_Claims, select = -c(policy_number, policy_bind_date, policy_csl, insured_zip, incident_date, incident_location, police_report_available, injury_claim, property_claim, vehicle_claim))
+Insurance_Claims
+```
+
+## Binning Variables
+
+
+## Linear Regression Models
+```{r}
+lm(total_claim_amount ~ policy_bind_date, data = Insurance_Claims)
+```
 
 # looking at the distribution of Total_claim 
 

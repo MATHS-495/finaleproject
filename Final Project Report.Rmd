@@ -23,6 +23,7 @@ Insurance_Claims <- read_csv("insurance_claims.csv")
 View(Insurance_Claims)
 ```
 
+
 We have 1,0000 Cases(Rows) and 39 Columns
 Categorical Columns -
 Quantitative Columns  - 
@@ -94,7 +95,6 @@ summary(Insurance_Claims)
 
 Based on the feature of variables we are removing some of the variables that are very least important to us such as policy_bind_date.
 
-
 # Looking at the relationship between Response variable and explanatory variables 
 
 [1] "months_as_customer" 
@@ -103,8 +103,6 @@ Based on the feature of variables we are removing some of the variables that are
 ggplot(Insurance_Claims)+
   geom_point(aes(x=months_as_customer,y=total_claim_amount))
 ```
- 
- 
  
  
 [2] "age"  
@@ -148,12 +146,11 @@ ggplot(Insurance_Claims)+
 ggplot(data=Insurance_Claims,aes(x=policy_csl,y=total_claim_amount))+
   geom_col(size=1,color="darkblue",width =.4)
 ``` 
- 
- 
+
 
 [7] "policy_deductable" 
 ```{r}
-ggplot(data=Insurance_Claims,aes(x=policy_deductable,y=total_claim_amount))+
+ggplot(data=Insurance_Claims,aes(x=factor(policy_deductable),y=sum(total_claim_amount)))+
   geom_col(size=1,color="darkblue",width =.4)
 ```
  
@@ -166,11 +163,10 @@ ggplot(Insurance_Claims)+
  [9] "umbrella_limit"    
  
 ```{r}
-ggplot(data=Insurance_Claims,aes(x=umbrella_limit,y=total_claim_amount))+
+ggplot(data=Insurance_Claims,aes(x=factor(umbrella_limit),y=total_claim_amount))+
   geom_col(size=1,color="darkblue",width =.4)
 ``` 
 
-[10] "insured_zip"  
 
 
 
@@ -181,8 +177,8 @@ ggplot(data=Insurance_Claims,aes(x=insured_sex,y=total_claim_amount))+
 ```
 [12] "insured_education_level"    
 ```{r}
-ggplot(Insurance_Claims)+
-  geom_point(aes(x=insured_education_level,y=total_claim_amount))
+ggplot(data=Insurance_Claims,aes(x=factor(insured_education_level),y=total_claim_amount))+
+  geom_col(size=1,color="darkblue",width =.4)
 ```
 [13] "insured_occupation"       
 ```{r}
@@ -279,8 +275,8 @@ ggplot(Insurance_Claims)+
 ggplot(Insurance_Claims)+
   geom_point(aes(x=police_report_available,y=total_claim_amount))
 ```
-[32] "total_claim_amount"      
 
+[32] "total_claim_amount"      
 
 Response variable 
 
@@ -332,6 +328,51 @@ value<-as.data.frame(round(cor_aso_values$value,2))
 ```{r,fig.width=20,fig.height=14}
 ggcorrplot(value, method = "circle")
 ```
+
+
+
+# looking at the distribution of Total_claim 
+
+
+```{r}
+ggplot(data =Insurance_Claims,aes(x=total_claim_amount))+
+  geom_histogram(bins =10,fill="steelblue")+
+  xlab("Total_claim")
+
+```
+
+The list of the variables that we don't need: 
+
+
+policy_number, 
+policy_bind_date
+policy_csl- because we have other coverage variables that are similar to this
+insured_zip
+incident date
+incident_location -using state and city instead
+police report available
+injury_claim, property_claim, and vehicle claim- using sum of all as total_claim
+
+
+
+
+
+
+
+
+Generalized linear model
+
+
+
+
+
+```{r}
+
+
+```
+
+
+
 
 
 

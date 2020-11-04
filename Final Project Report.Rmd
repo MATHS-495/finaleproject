@@ -105,11 +105,7 @@ ggplot(Insurance_Claims)+
   geom_point(aes(x=months_as_customer,y=total_claim_amount))
 ```
  
-<<<<<<< HEAD
- 
-=======
 
->>>>>>> ebee208ed5dfec8d2470c29b4f79c60afeb97065
 [2] "age"  
  
 ```{r}
@@ -147,13 +143,21 @@ ggplot(Insurance_Claims)+
  
  
 [6] "policy_csl" 
-```{r}
-ggplot(data=Insurance_Claims,aes(x=policy_csl,y=total_claim_amount))+
-  geom_col(size=1,color="darkblue",width =.4)
-``` 
+
 
 
 [7] "policy_deductable" 
+
+```{r}
+policy_deductible1<- Insurance_Claims %>% 
+  group_by(policy_deductable) %>% 
+  summarise(total_claim= sum(total_claim_amount))
+
+ggplot(data=policy_deductible1,aes(x=factor(policy_deductable),y=total_claim))+
+  geom_col(size=1,color="darkblue",width =.4)
+
+```
+
 ```{r}
 ggplot(data=Insurance_Claims,aes(x=factor(policy_deductable),y=sum(total_claim_amount)))+
   geom_col(size=1,color="darkblue",width =.4)
@@ -164,11 +168,15 @@ ggplot(data=Insurance_Claims,aes(x=factor(policy_deductable),y=sum(total_claim_a
 ggplot(Insurance_Claims)+
   geom_point(aes(x=policy_annual_premium,y=total_claim_amount))
 ```
+Based on the visualization variable needs to be binned.  
+
+
+
 
  [9] "umbrella_limit"    
  
 ```{r}
-ggplot(data=Insurance_Claims,aes(x=factor(umbrella_limit),y=total_claim_amount))+
+ggplot(data=Insurance_Claims,aes(x=factor(umbrella_limit),y=sum(total_claim_amount)))+
   geom_col(size=1,color="darkblue",width =.4)
 ``` 
 
@@ -177,108 +185,114 @@ ggplot(data=Insurance_Claims,aes(x=factor(umbrella_limit),y=total_claim_amount))
 
 [11] "insured_sex"     
 ```{r}
-ggplot(data=Insurance_Claims,aes(x=insured_sex,y=total_claim_amount))+
+ggplot(data=Insurance_Claims,aes(x=insured_sex,y=sum(total_claim_amount)))+
   geom_col(size=1,color="darkblue",width =.4)
 ```
 [12] "insured_education_level"    
 ```{r}
-ggplot(data=Insurance_Claims,aes(x=factor(insured_education_level),y=total_claim_amount))+
+ggplot(data=Insurance_Claims,aes(x=factor(insured_education_level),y=sum(total_claim_amount)))+
   geom_col(size=1,color="darkblue",width =.4)
 ```
 [13] "insured_occupation"       
 ```{r}
-ggplot(Insurance_Claims)+
-  geom_point(aes(x=insured_occupation,y=total_claim_amount))
+ggplot(data=Insurance_Claims,aes(x=insured_occupation,y=sum(total_claim_amount)))+
+  geom_col(size=1,color="darkblue",width =.5)
 ```
 [14] "insured_hobbies"     
 ```{r}
-ggplot(Insurance_Claims)+
-  geom_point(aes(x=insured_hobbies,y=total_claim_amount))
+ggplot(data=Insurance_Claims,aes(x=insured_hobbies,y=sum(total_claim_amount)))+
+  geom_col(size=1,color="darkblue",width =.5)
 ```
 [15] "insured_relationship"    
 ```{r}
-ggplot(Insurance_Claims)+
-  geom_point(aes(x=insured_relationship,y=total_claim_amount))
+ggplot(data=Insurance_Claims,aes(x=insured_relationship,y=sum(total_claim_amount)))+
+  geom_col(size=1,color="darkblue",width =.5)
 ```
 [16] "capital-gains"     
 ```{r}
 ggplot(Insurance_Claims)+
   geom_point(aes(x=`capital-gains`,y=total_claim_amount))
 ```
+Needs bining 
+
 [17] "capital-loss"      
 ```{r}
 ggplot(Insurance_Claims)+
   geom_point(aes(x=`capital-loss`,y=total_claim_amount))
 ```
+Needs binning 
+
+
 [18] "incident_date"     
-```{r}
-ggplot(Insurance_Claims)+
-  geom_point(aes(x=incident_date,y=total_claim_amount))
-```
+
+
+
+
+
 [19] "incident_type"     
 ```{r}
-ggplot(Insurance_Claims)+
-  geom_point(aes(x=incident_type,y=total_claim_amount))
+ggplot(data=Insurance_Claims,aes(x=incident_type,y=sum(total_claim_amount)))+
+  geom_col(size=1,color="darkblue",width =.5)
 ```
 [20] "collision_type"     
 ```{r}
-ggplot(Insurance_Claims)+
-  geom_point(aes(x=collision_type,y=total_claim_amount))
+ggplot(data=Insurance_Claims,aes(x=collision_type,y=sum(total_claim_amount)))+
+  geom_col(size=1,color="darkblue",width =.5)
 ```
 [21] "incident_severity"       
 ```{r}
-ggplot(Insurance_Claims)+
-  geom_point(aes(x=incident_severity,y=total_claim_amount))
+ggplot(data=Insurance_Claims,aes(x=incident_severity,y=sum(total_claim_amount)))+
+  geom_col(size=1,color="darkblue",width =.5)
 ```
 [22] "authorities_contacted"   
 ```{r}
-ggplot(Insurance_Claims)+
-  geom_point(aes(x=authorities_contacted,y=total_claim_amount))
+ggplot(data=Insurance_Claims,aes(x=authorities_contacted,y=sum(total_claim_amount)))+
+  geom_col(size=1,color="darkblue",width =.5)
 ```
 [23] "incident_state"         
 ```{r}
-ggplot(Insurance_Claims)+
-  geom_point(aes(x=incident_state,y=total_claim_amount))
+ggplot(data=Insurance_Claims,aes(x=incident_state,y=sum(total_claim_amount)))+
+  geom_col(size=1,color="darkblue",width =.5)
 ```
 [24] "incident_city"           
 ```{r}
-ggplot(Insurance_Claims)+
-  geom_point(aes(x=incident_city,y=total_claim_amount))
+ggplot(data=Insurance_Claims,aes(x=incident_city,y=sum(total_claim_amount)))+
+  geom_col(size=1,color="darkblue",width =.5)
 ```
 [25] "incident_location"          
-```{r}
-ggplot(Insurance_Claims)+
-  geom_point(aes(x=incident_location,y=total_claim_amount))
-```
+
+
+
+
 [26] "incident_hour_of_the_day"   
-```{r}
-ggplot(Insurance_Claims)+
-  geom_point(aes(x=incident_hour_of_the_day,y=total_claim_amount))
-```
+
+
+
+
 [27] "number_of_vehicles_involved"
 ```{r}
-ggplot(Insurance_Claims)+
-  geom_point(aes(x=number_of_vehicles_involved,y=total_claim_amount))
+ggplot(data=Insurance_Claims,aes(x=number_of_vehicles_involved,y=sum(total_claim_amount)))+
+  geom_col(size=1,color="darkblue",width =.5)
 ```
 [28] "property_damage"   
 ```{r}
-ggplot(Insurance_Claims)+
-  geom_point(aes(x=property_damage,y=total_claim_amount))
+ggplot(data=Insurance_Claims,aes(x=property_damage,y=sum(total_claim_amount)))+
+  geom_col(size=1,color="darkblue",width =.5)
 ```
 [29] "bodily_injuries"       
 ```{r}
-ggplot(Insurance_Claims)+
-  geom_point(aes(x=bodily_injuries,y=total_claim_amount))
+ggplot(data=Insurance_Claims,aes(x=bodily_injuries,y=sum(total_claim_amount)))+
+  geom_col(size=1,color="darkblue",width =.5)
 ```
 [30] "witnesses"              
 ```{r}
-ggplot(Insurance_Claims)+
-  geom_point(aes(x=witnesses,y=total_claim_amount))
+ggplot(data=Insurance_Claims,aes(x=witnesses,y=sum(total_claim_amount)))+
+  geom_col(size=1,color="darkblue",width =.5)
 ```
 [31] "police_report_available"    
 ```{r}
-ggplot(Insurance_Claims)+
-  geom_point(aes(x=police_report_available,y=total_claim_amount))
+ggplot(data=Insurance_Claims,aes(x=police_report_available,y=sum(total_claim_amount)))+
+  geom_col(size=1,color="darkblue",width =.5)
 ```
 
 [32] "total_claim_amount"      
@@ -286,39 +300,33 @@ ggplot(Insurance_Claims)+
 Response variable 
 
 [33] "injury_claim"           
-```{r}
-ggplot(Insurance_Claims)+
-  geom_point(aes(x=injury_claim,y=total_claim_amount))
-```
+
 [34] "property_claim"      
-```{r}
-ggplot(Insurance_Claims)+
-  geom_point(aes(x=property_claim,y=total_claim_amount))
-```
+
 [35] "vehicle_claim"   
-```{r}
-ggplot(Insurance_Claims)+
-  geom_point(aes(x=vehicle_claim,y=total_claim_amount))
-```
+
+
+
+
 [36] "auto_make"      
 ```{r}
-ggplot(Insurance_Claims)+
-  geom_point(aes(x=auto_make,y=total_claim_amount))
+ggplot(data=Insurance_Claims,aes(x=auto_make,y=sum(total_claim_amount)))+
+  geom_col(size=1,color="darkblue",width =.5)
 ```
 [37] "auto_model"      
 ```{r}
-ggplot(Insurance_Claims)+
-  geom_point(aes(x=auto_model,y=total_claim_amount))
+ggplot(data=Insurance_Claims,aes(x=auto_model,y=sum(total_claim_amount)))+
+  geom_col(size=1,color="darkblue",width =.5)
 ```
 [38] "auto_year"       
 ```{r}
-ggplot(Insurance_Claims)+
-  geom_point(aes(x=auto_year,y=total_claim_amount))
+ggplot(data=Insurance_Claims,aes(x=auto_year,y=sum(total_claim_amount)))+
+  geom_col(size=1,color="darkblue",width =.5)
 ```
 [39] "fraud_reported" 
 ```{r}
-ggplot(Insurance_Claims)+
-  geom_point(aes(x=fraud_reported,y=total_claim_amount))
+ggplot(data=Insurance_Claims,aes(x=fraud_reported,y=sum(total_claim_amount)))+
+  geom_col(size=1,color="darkblue",width =.5)
 ```
 
 Our dataset has "?" values in the place of missing values, We have to first get rid of those unknown values before we start to create our first models.
@@ -334,17 +342,6 @@ value <- as.data.frame(round(cor_aso_values$value,2))
 ggcorrplot(value, method = "square")
 ```
 
-## Variables Not Needed for our EDA
-
-The following variables will be dropped and deleted from the data set to make our EDA more straightforward:
-
-policy_number, policy_bind_date, policy_csl - there are other variables, incident_date, 
-
-When we move forward and do the models we need to facotur out those variables.
-```{r}
-Insurance_Claims <- subset(Insurance_Claims, select = -c(policy_number, policy_bind_date, policy_csl, insured_zip, incident_date, incident_location, police_report_available, injury_claim, property_claim, vehicle_claim))
-Insurance_Claims
-```
 
 ## Binning Variables
 
@@ -377,21 +374,16 @@ police report available
 injury_claim, property_claim, and vehicle claim- using sum of all as total_claim
 
 
+## Variables Not Needed for our EDA
 
+The following variables will be dropped and deleted from the data set to make our EDA more straightforward:
 
+policy_number, policy_bind_date, policy_csl - there are other variables, incident_date, 
 
-
-
-
-Generalized linear model
-
-
-
-
-
+When we move forward and do the models we need to factor out those variables.
 ```{r}
-
-
+Insurance_Claims1 <- subset(Insurance_Claims, select = -c(policy_number, policy_bind_date, policy_csl, insured_zip, incident_date, incident_location, police_report_available, injury_claim, property_claim, vehicle_claim))
+Insurance_Claims
 ```
 
 
